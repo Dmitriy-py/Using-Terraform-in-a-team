@@ -130,6 +130,17 @@ terraform {
 
 <img width="1920" height="1080" alt="Снимок экрана (1754)" src="https://github.com/user-attachments/assets/9794cd65-ac00-4a79-beee-e45723f97546" />
 
+## Задание 3
+
+Сделайте в GitHub из ветки 'terraform-05' новую ветку 'terraform-hotfix'.
+Проверье код с помощью tflint и checkov, исправьте все предупреждения и ошибки в 'terraform-hotfix', сделайте коммит.
+Откройте новый pull request 'terraform-hotfix' --> 'terraform-05'.
+Вставьте в комментарий PR результат анализа tflint и checkov, план изменений инфраструктуры из вывода команды terraform plan.
+Пришлите ссылку на PR для ревью. Вливать код в 'terraform-05' не нужно.
+
+## Ответ:
+
+### ` Ссылка на PR: ` https://github.com/Dmitriy-py/Advanced-Terraform-Techniques/pull/1
 
 
 
