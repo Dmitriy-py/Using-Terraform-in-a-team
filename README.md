@@ -118,6 +118,8 @@ terraform {
 
 <img width="1920" height="1080" alt="Снимок экрана (1749)" src="https://github.com/user-attachments/assets/9caf6973-72cc-45c5-b4e6-c1182d1a50f3" />
 
+<img width="1920" height="1080" alt="Снимок экрана (1751)" src="https://github.com/user-attachments/assets/9a4076ff-0e9a-4cd2-9f85-332ce209c99f" />
+
 <img width="1920" height="1080" alt="Снимок экрана (1757)" src="https://github.com/user-attachments/assets/dcaaa2b2-f051-4932-8968-dee259ff18ad" />
 
 <img width="1920" height="1080" alt="Снимок экрана (1755)" src="https://github.com/user-attachments/assets/0eb40017-a188-49cf-be0a-283b5e0627d2" />
