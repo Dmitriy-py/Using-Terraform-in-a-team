@@ -180,9 +180,35 @@ variable "list_of_ip_addresses" {
 
 <img width="1920" height="1080" alt="Снимок экрана (1769)" src="https://github.com/user-attachments/assets/4fd7ba09-aabc-4d8e-929e-8ffb80fcc960" />
 
+## Задание 5*
 
+1. Напишите переменные с валидацией:
+   * type=string, description="любая строка" — проверка, что строка не содержит символов верхнего регистра;
+   * type=object — проверка, что одно из значений равно true, а второе false, т. е. не допускается false false и true true:
 
+```terraform
+variable "in_the_end_there_can_be_only_one" {
+    description="Who is better Connor or Duncan?"
+    type = object({
+        Dunkan = optional(bool)
+        Connor = optional(bool)
+    })
 
+    default = {
+        Dunkan = true
+        Connor = false
+    }
+
+    validation {
+        error_message = "There can be only one MacLeod"
+        condition = <проверка>
+    }
+}
+```
+
+## Ответ:
+
+<img width="1920" height="1080" alt="Снимок экрана (1770)" src="https://github.com/user-attachments/assets/25e44019-e813-4b01-bfda-6ee5dfddacce" />
 
 
 
