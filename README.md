@@ -142,8 +142,43 @@ terraform {
 
 ### ` Ссылка на PR: ` https://github.com/Dmitriy-py/Advanced-Terraform-Techniques/pull/1
 
+## Задание 4
 
+1. Напишите переменные с валидацией и протестируйте их, заполнив default верными и неверными значениями. Предоставьте          скриншоты проверок из terraform console.
+  * type=string, description="ip-адрес" — проверка, что значение переменной содержит верный IP-адрес с помощью функций          cidrhost() или regex(). Тесты: "192.168.0.1" и "1920.1680.0.1";
+  * type=list(string), description="список ip-адресов" — проверка, что все адреса верны. Тесты: ["192.168.0.1", "1.1.1.1",      "127.0.0.1"] и ["192.168.0.1", "1.1.1.1", "1270.0.0.1"].
 
+## Ответ:
+
+### ` validation_vars.tf `
+
+```terraform
+
+variable "single_ip_address" {
+  type        = string
+  description = "Одиночный IP-адрес (IPv4)."
+
+  validation {
+    condition     = can(regex("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$", var.single_ip_address))
+    error_message = "Значение должно быть корректным IPv4-адресом (например, 192.168.1.1)."
+  }
+}
+
+variable "list_of_ip_addresses" {
+  type        = list(string)
+  description = "Список IPv4-адресов."
+
+  validation {
+    condition     = alltrue([
+        for ip in var.list_of_ip_addresses : can(regex("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$", ip))
+    ])
+    error_message = "Список содержит некорректные IPv4-адреса. Все элементы списка должны быть корректными IPv4."
+  }
+}
+
+```
+
+<img width="1920" height="1080" alt="Снимок экрана (1769)" src="https://github.com/user-attachments/assets/4fd7ba09-aabc-4d8e-929e-8ffb80fcc960" />
 
 
 
