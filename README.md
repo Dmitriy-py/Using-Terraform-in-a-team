@@ -73,5 +73,68 @@ Checkov ориентирован на поиск проблем безопасн
 
 ### Важное замечание: Без фактического запуска tflint --init и checkov -d . невозможно точно определить конкретные найденные ошибки, так как эти инструменты работают с правилами, которые могут быть настроены или иметь разные уровни детализации. Перечисленные выше типы ошибок основаны на общих категориях проверок, которые выполняют TFLint и Checkov для Terraform кода.
                     
+## Задание 2
+
+Возьмите ваш GitHub-репозиторий с выполненным ДЗ 4 в ветке 'terraform-04' и сделайте из него ветку 'terraform-05'.
+Настройте remote state с встроенными блокировками:
+Создайте S3 bucket в Yandex Cloud для хранения state (если еще не создан)
+Создайте service account с правами на чтение/запись в bucket
+Настройте backend в providers.tf с использованием нового механизма блокировок:
+```terraform
+terraform {
+  required_version = "~>1.12.0"
+  
+  backend "s3" {
+    bucket  = "ваш-bucket-name"
+    key     = "terraform.tfstate"
+    region  = "ru-central1"
+    
+    # Встроенный механизм блокировок (Terraform >= 1.6)
+    # Не требует отдельной базы данных!
+    use_lockfile = true
+    
+    endpoints = {
+      s3 = "https://storage.yandexcloud.net"
+    }
+    
+    skip_region_validation      = true
+    skip_credentials_validation = true
+    skip_requesting_account_id  = true
+    skip_s3_checksum            = true
+  }
+}
+```
+Выполните terraform init -migrate-state для миграции state в S3
+Предоставьте скриншоты процесса настройки и миграции
+
+## Ответ:
+
+<img width="1920" height="1080" alt="Снимок экрана (1747)" src="https://github.com/user-attachments/assets/b7f78205-dbbd-41a4-a0dd-ef714bfa85eb" />
+
+<img width="1920" height="1080" alt="Снимок экрана (1749)" src="https://github.com/user-attachments/assets/9caf6973-72cc-45c5-b4e6-c1182d1a50f3" />
+
+<img width="1920" height="1080" alt="Снимок экрана (1755)" src="https://github.com/user-attachments/assets/0eb40017-a188-49cf-be0a-283b5e0627d2" />
+
+<img width="1920" height="1080" alt="Снимок экрана (1756)" src="https://github.com/user-attachments/assets/0f33513f-d0a0-482b-9ec4-2b51f88a1a5b" />
+
+<img width="1920" height="1080" alt="Снимок экрана (1752)" src="https://github.com/user-attachments/assets/0419a320-254b-4937-95ea-d872ca5ebef6" />
+
+<img width="1920" height="1080" alt="Снимок экрана (1754)" src="https://github.com/user-attachments/assets/9794cd65-ac00-4a79-beee-e45723f97546" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
